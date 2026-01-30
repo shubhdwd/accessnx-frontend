@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* AccessNX Design Tokens - Cyber-Clinical Theme */
+    --background: 240 33% 3%;
+    --foreground: 0 0% 88%;
+    --card: 240 14% 6%;
+    --card-foreground: 0 0% 88%;
+    --popover: 240 14% 6%;
+    --popover-foreground: 0 0% 88%;
+    --primary: 183 100% 50%;
+    --primary-foreground: 240 33% 3%;
+    --secondary: 264 100% 50%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 10% 12%;
+    --muted-foreground: 240 5% 55%;
+    --accent: 183 100% 50%;
+    --accent-foreground: 240 33% 3%;
+    --destructive: 340 100% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 150 100% 50%;
+    --success-foreground: 240 33% 3%;
+    --warning: 45 100% 50%;
+    --warning-foreground: 240 33% 3%;
+    --border: 240 10% 18%;
+    --input: 240 10% 18%;
+    --ring: 183 100% 50%;
+    --radius: 0.5rem;
+    
+    /* Custom AccessNX Colors */
+    --nx-cyan: #00F0FF;
+    --nx-purple: #7000FF;
+    --nx-void: #05050A;
+    --nx-surface: #0F0F14;
+    --nx-surface-highlight: #1A1A24;
+    --nx-border: #2A2A35;
+    --nx-text: #E0E0E0;
+    --nx-success: #00FF88;
+    --nx-danger: #FF0055;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-[#05050A] text-[#E0E0E0] antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rajdhani', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  
+  /* WCAG 2.4.7 - Visible Focus Indicators */
+  :focus-visible {
+    outline: 3px solid var(--nx-cyan);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+  
+  /* Skip link for keyboard users - WCAG 2.4.1 */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--nx-cyan);
+    color: var(--nx-void);
+    padding: 8px 16px;
+    z-index: 100;
+    transition: top 0.3s;
+  }
+  
+  .skip-link:focus {
+    top: 0;
+  }
+}
+
+@layer components {
+  /* Glassmorphic Card Style */
+  .nx-card {
+    @apply backdrop-blur-md bg-[#0F0F14]/80 border border-[#2A2A35] rounded-lg;
+  }
+  
+  .nx-card-hover {
+    @apply transition-all duration-300;
+  }
+  
+  .nx-card-hover:hover {
+    @apply border-[#00F0FF]/50 bg-[#1A1A24]/90;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+  }
+  
+  /* Feature Card Hover Effect - fast, snappy response with enhanced glow */
+  .feature-card-hover {
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  
+  .feature-card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+      0 12px 40px rgba(0, 240, 255, 0.25),
+      0 0 80px rgba(0, 240, 255, 0.15),
+      0 0 120px rgba(112, 0, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 240, 255, 0.6);
+  }
+  
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .feature-card-hover:hover {
+      transform: none;
+    }
+  }
+  
+  /* Glowing Button Styles */
+  .nx-btn-primary {
+    @apply relative overflow-hidden bg-transparent border-2 border-[#00F0FF] text-[#00F0FF] px-8 py-3 font-semibold rounded-md transition-all duration-300;
+  }
+  
+  .nx-btn-primary:hover {
+    @apply bg-[#00F0FF] text-[#05050A];
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+  }
+  
+  .nx-btn-primary:active {
+    @apply scale-95;
+  }
+  
+  /* Cyber Input Style */
+  .nx-input {
+    @apply w-full bg-transparent border-b-2 border-[#2A2A35] text-[#E0E0E0] px-4 py-3 focus:outline-none transition-colors duration-300;
+  }
+  
+  .nx-input:focus {
+    @apply border-[#00F0FF];
+  }
+  
+  /* Severity Indicators */
+  .severity-critical {
+    @apply border-l-4 border-l-[#FF0055];
+  }
+  
+  .severity-moderate {
+    @apply border-l-4 border-l-[#FFD700];
+  }
+  
+  .severity-minor {
+    @apply border-l-4 border-l-[#00F0FF];
+  }
+  
+  /* WCAG Badge */
+  .wcag-badge {
+    @apply inline-flex items-center px-2 py-0.5 text-xs font-mono bg-[#1A1A24] border border-[#2A2A35] rounded text-[#00F0FF];
+  }
+  
+  /* Score Colors */
+  .score-excellent {
+    color: var(--nx-success);
+  }
+  
+  .score-good {
+    color: var(--nx-cyan);
+  }
+  
+  .score-needs-improvement {
+    color: var(--warning);
+  }
+  
+  .score-poor {
+    color: var(--nx-danger);
+  }
+  
+  /* Loading Animation */
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+    50% {
+      opacity: 0.7;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+    }
+  }
+  
+  .loading-pulse {
+    animation: pulse-glow 1.5s ease-in-out infinite;
+  }
+  
+  /* Text Scramble Effect Base */
+  .scramble-text {
+    font-family: 'Rajdhani', monospace;
+  }
+  
+  /* Scrollbar Styling - Thumb hidden on ALL browsers, scrolling still works */
+  /* Chromium, Safari, Edge */
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 0;
+  }
+  
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  
+  /* Firefox */
+  * {
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
+  }
+  
+  /* Safari and older browsers - hide scrollbar but keep functionality */
+  html {
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  html::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+  
+  body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+  
+  /* Reduced Motion Support - WCAG 2.3.3 */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-[#00F0FF] to-[#7000FF] bg-clip-text text-transparent;
+  }
+  
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  }
+  
+  .glow-purple {
+    box-shadow: 0 0 20px rgba(112, 0, 255, 0.3);
+  }
+}
