@@ -1,0 +1,6 @@
+src/components/FeatureCard.tsx(3,18): error TS6133: 'useEffect' is declared but its value is never read.
+src/components/FeatureCard.tsx(21,57): error TS6133: 'isActive' is declared but its value is never read.
+src/components/FeatureCard.tsx(25,9): error TS6133: 'handleMouseEnter' is declared but its value is never read.
+src/components/FeatureCard.tsx(31,9): error TS6133: 'handleMouseLeave' is declared but its value is never read.
+src/hooks/use-toast.ts(6,53): error TS2307: Cannot find module '@/components/ui/toast' or its corresponding type declarations.
+src/hooks/use-toast.ts(158,22): error TS7006: Parameter 'open' implicitly has an 'any' type.
